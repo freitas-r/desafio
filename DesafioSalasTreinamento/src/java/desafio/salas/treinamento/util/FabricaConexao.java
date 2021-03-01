@@ -13,7 +13,7 @@ public class FabricaConexao {
     private static Connection conexao;
     private static final String URL_CONEXAO = "jdbc:mysql://localhost/salas-treinamento";
     private static final String USUARIO = "root";
-    private static final String SENHA = "Issigonis59";
+    private static final String SENHA = "root";
     
     //Método para abrir uma conexão
     public static Connection getConexao(){
