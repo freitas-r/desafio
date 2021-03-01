@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Gerenciador Treinamento</title>
+    </h:head>
+    <h:body>
+        <h1>Sistema de Gerenciamento Para Treinamentos</h1>
+        
+        <!--Menu para seleção entre área de cadástro e de gerenciamento das informações já cadastradas-->  
+        <p:menubar>
+            <p:menuitem value="Cadastrar" url="faces/index.xhtml"></p:menuitem>
+            <p:menuitem value="Gerenciar" url="faces/gerenciar.xhtml"></p:menuitem>
+        </p:menubar>
+        <hr/>
+        
+        <!--Área de gerenciamento dividida em abas para cadastro de Participante, Sala e Espaço de Café-->
+        <p:fieldset legend="Área de Gerenciamento">
+            <p:accordionPanel>
+                <!--Área de gerenciamento de Participante-->
+                <!--Dados de saída: nome e sobrenome-->
+                <p:tab title="Lista de Participantes">
+                    <h:form id="dt-participante">
+                        <p:toolbar>
+                            <p:toolbarGroup>
+                                <p:commandButton value="Listar" action="#{participantesBean.listar()}" update="tabela-participante"></p:commandButton>
+                            </p:toolbarGroup>
+                            
+                        </p:toolbar>
+                        <hr/>
+                        <!--DataTable incorporada com filtro para localizar participante-->
+                        <p:dataTable id="tabela-participante" var="participante" value="#{participantesBean.participantes}">
+                            <p:column headerText="Nome" sortBy="#{participante.nome}" filterBy="#{participante.nome}">
+                                <h:outputText value="#{participante.nome}" />
+                            </p:column>
+
+                            <p:column headerText="Sobrenome" sortBy="#{participante.sobrenome}" filterBy="#{participante.sobrenome}">
+                                <h:outputText value="#{participante.sobrenome}" />
+                            </p:column>
+                        </p:dataTable>
+                        
+                    </h:form>
+                </p:tab>  
+                <!--Área de gerenciamento de Sala-->
+                <!--Dados de saída: nome e lotaçao da sala-->
+                <p:tab title="Lista de Salas">
+                    <h:form id="dt-salas">
+                        <p:toolbar>
+                            <p:toolbarGroup>
+                                <p:commandButton value="Listar" action="#{salasBean.listar()}" update="tabela-sala"></p:commandButton>
+
+                            </p:toolbarGroup>
+                        </p:toolbar>
+                        <hr/>
+                        <p:dataTable id="tabela-sala" var="sala" value="#{salasBean.salas}">
+                            <p:column headerText="Nome da Sala" sortBy="#{sala.nome}">
+                                <h:outputText value="#{sala.nome}" />
+                            </p:column>
+
+                            <p:column headerText="Lotação" sortBy="#{sala.lotacao}">
+                                <h:outputText value="#{sala.lotacao}" />
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </p:tab> 
+                <!--Área de gerenciamento de Café-->
+                <!--Dados de saída: nome e lotaçao do Café-->
+                <p:tab title="Lista Espaços de Café">
+                    <h:form id="dt-cafes">
+                        <p:toolbar>
+                            <p:toolbarGroup>
+                                <p:commandButton value="Listar" action="#{cafesBean.listar()}" update="tabela-cafe"></p:commandButton>
+
+                            </p:toolbarGroup>
+                        </p:toolbar>                            
+                        <hr/>
+                        <p:dataTable id="tabela-cafe" var="cafe" value="#{cafesBean.cafes}">
+                            <p:column headerText="Nome do Café" sortBy="#{cafe.nome}">
+                                <h:outputText value="#{cafe.nome}" />
+                            </p:column>
+
+                            <p:column headerText="Lotação" sortBy="#{cafe.lotacao}">
+                                <h:outputText value="#{cafe.lotacao}" />
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </p:tab>  
+            </p:accordionPanel>
+        </p:fieldset>
+    </h:body>
+</html>
+
